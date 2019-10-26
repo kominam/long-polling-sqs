@@ -1,1 +1,2 @@
-# Long-polling queue with sql, lambda
+## Long-polling queue
+Serverless with AWS SQS, Lambda, API Gateway, CloudFormation

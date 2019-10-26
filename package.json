@@ -1,7 +1,7 @@
 {
   "name": "Long-polling-queue",
   "version": "1.0.0",
-  "description": "",
+  "description": "Serverless with AWS SQS, Lambda, API Gateway",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,15 +10,20 @@
     "type": "git",
     "url": "git+https://github.com/kominam/Long-polling-queue.git"
   },
-  "keywords": [],
+  "keywords": [
+    "Serverless",
+    "SQS",
+    "Lambda",
+    "API Gateway"
+  ],
   "author": "NamDV",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kominam/Long-polling-queue/issues"
   },
   "homepage": "https://github.com/kominam/Long-polling-queue#readme",
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.6.4",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
