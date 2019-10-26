@@ -10,7 +10,7 @@ const handler = async (event, _, callback) => {
     Entries: body.messages.map(message => ({
       Id: uuid(),
       MessageBody: message,
-    }));
+    }))
   }
 
   try {
@@ -24,7 +24,8 @@ const handler = async (event, _, callback) => {
       "isBase64Encoded": false
     });
   } catch(err) {
-    callback(error, error.stack);
+    console.log(err);
+    callback(err, err.stack);
   }
 };
 
