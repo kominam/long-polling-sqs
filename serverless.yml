@@ -1,0 +1,48 @@
+service:
+  name: aws-lambda-sqs-long-polling
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  iamRoleStatements:
+  - Effect: "Allow"
+    Action:
+      - "sqs:*"
+    Resource:
+      Fn::GetAtt:
+        - "LongPolling"
+        - "Arn"
+
+resources:
+  Resources:
+    LongPolling:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: "long-polling"
+        ReceiveMessageWaitTimeSeconds: 10
+
+functions:
+  sqsLongPollingHanlder:
+    handler: src/func/consumer.handler
+    timeout: 5
+    memorySize: 128
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - "LongPolling"
+              - "Arn"
+          batchSize: 10
+  pushMessageToQueue:
+    handler: src/func/provider.handler
+    timeout: 10
+    memorySize: 256
+    environment:
+      QUEUE_URL: !Ref LongPolling
+    events:
+      - http:
+          path: messages/bulk
+          method: post
